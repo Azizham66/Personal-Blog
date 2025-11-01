@@ -1,0 +1,28 @@
+.primary-link {
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  transition: all 0.1s;
+}
+
+.primary-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--marker-red),
+    var(--marker-red) 5px,
+    transparent 5px,
+    transparent 8px
+  );
+  opacity: 0.7;
+}
+
+.primary-link:hover {
+  color: var(--marker-red);
+}

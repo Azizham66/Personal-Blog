@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@layer utilities {
+  .caret-blink {
+    caret-color: currentColor;
+    animation: caret-blink 1s steps(2, start) infinite;
+  }
+
+  @keyframes caret-blink {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+:root {
+  --paper-white: #fafafa;
+  --marker-black: #111827;
+  --marker-red: #ef4444;
+  --marker-blue: #3b82f6;
+  --code-bg: #e5e7eb;
+  --marker-violet: #8b5cf6;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(
+    --marker-blue
+  ); /* Blue background to contrast the 'paper' */
+  padding: 20px;
+  /* UPDATED: Use column layout to stack header, container, and footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; /* Centers items horizontally */
+  min-height: 100vh;
+}
+
+.marker-text-black {
+  color: var(--marker-black);
+}
+

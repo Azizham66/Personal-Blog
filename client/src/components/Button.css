@@ -1,0 +1,32 @@
+.marker-btn-default {
+  border: 3px solid var(--marker-black);
+  background-color: var(--paper-white);
+  box-shadow: 4px 4px 0 0 var(--marker-black);
+  transform: translate(0);
+  transition: all 0.1s;
+  font-weight: bold;
+}
+
+.marker-btn:hover {
+  box-shadow: 2px 2px 0 0 var(--marker-black);
+  transform: translate(2px, 2px);
+}
+
+.marker-btn-violet {
+  border: 3px solid var(--marker-violet);
+  background-color: var(--paper-white);
+  box-shadow: 4px 4px 0 0 var(--marker-violet);
+  transform: translate(0);
+  transition: all 0.1s;
+  font-weight: bold;
+}
+
+.marker-btn-red {
+  border: 3px solid var(--marker-red);
+  color: var(--marker-red);
+  background-color: var(--paper-white);
+  box-shadow: 4px 4px 0 0 var(--marker-red);
+  transform: translate(0);
+  transition: all 0.1s;
+  font-weight: bold;
+}

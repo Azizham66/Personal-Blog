@@ -1,0 +1,9 @@
+.marker-h1 {
+    font-family: monospace, 'ui-monospace';
+    text-transform: uppercase;
+    letter-spacing: -1;
+    border-bottom: 3px dashed var(--marker-black);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+}
