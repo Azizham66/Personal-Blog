@@ -1,5 +1,5 @@
 import type { BaseProps } from "../types/BaseProps";
-import './Container.css';
+import './styles/Container.css';
 
 export default function Container({
     className,

@@ -1,5 +1,5 @@
 import type { BaseProps } from '../types/BaseProps.ts';
-import './Button.css';
+import './styles/Button.css';
 type ButtonProps = BaseProps & {
     onClick?: () => void;
     type?: "button" | "submit" | "reset";

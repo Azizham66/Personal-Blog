@@ -9,7 +9,7 @@ import { mockPosts } from "../mockposts";
 import Anchor from "../components/Anchor";
 import Tag from "../components/Tag";
 import Button from "../components/Button";
-import './PostPage.css';
+import './styles/PostPage.css';
 
 export default function PostPage() {
   const { id } = useParams<{ id: string }>();

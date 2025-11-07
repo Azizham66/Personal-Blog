@@ -1,5 +1,5 @@
 import type { BaseProps } from "../types/BaseProps";
-import "./Anchor.css";
+import "./styles/Anchor.css";
 
 type AnchorProps = BaseProps & {
     href: string;

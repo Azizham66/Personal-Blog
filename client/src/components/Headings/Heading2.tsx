@@ -1,5 +1,5 @@
 import type { BaseProps } from "../../types/BaseProps";
-import "./Heading2.css";
+import "./styles/Heading2.css";
 
 export default function Heading2({
     className, 
