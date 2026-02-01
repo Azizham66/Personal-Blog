@@ -1,6 +1,17 @@
 import express from 'express';
 import type { Request, Response } from 'express';
 import cors from 'cors';
+import postRoutes from './routes/posts.ts';
+import loginRoutes from './routes/login.ts';
+
+import dbConnect from './config/dbConnect.ts';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+dbConnect();
+
+
 
 // server/src/server.ts
 
@@ -14,13 +25,8 @@ app.use(
 );
 
 app.use(express.json());
-
-app.delete('/posts/:id', (req: Request, res: Response) => {
-    setTimeout(() => {
-        console.log('deleted post');
-        res.status(200).json({ message: 'deleted post' });
-    }, 5000)
-});
+app.use('/api', postRoutes);
+app.use('/auth', loginRoutes)
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
 app.listen(PORT, () => {
