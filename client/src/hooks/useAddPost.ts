@@ -6,7 +6,7 @@ export function useAddPost(apiUrl: string, refetch: () => Promise<void>) {
   const [error, setError] = useState<string | null>(null);
 
   const addPost = async (
-    newPost: Omit<Post, "id" | "createdAt" | "updatedAt">
+    newPost: Omit<Post, "_id" | "createdAt" | "updatedAt">
   ) => {
     setAdding(true);
     setError(null);

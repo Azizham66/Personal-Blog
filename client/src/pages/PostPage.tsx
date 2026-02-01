@@ -1,19 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "../components/Container";
 import Header from "../layouts/Header";
 import Heading2 from "../components/Headings/Heading2";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useDeletePost from "../hooks/useDeletePost";
-import { mockPosts } from "../mockposts";
 import Anchor from "../components/Anchor";
 import Tag from "../components/Tag";
 import Button from "../components/Button";
-import './styles/PostPage.css';
+import "./styles/PostPage.css";
+import { useFetchPost } from "../hooks/useFetchPost";
 
 export default function PostPage() {
   const { id } = useParams<{ id: string }>();
-  const postId = Number(id);
+  const postId = id || "";
+
   const refetch = async (): Promise<void> => {
     // implement actual refetch logic as needed; returning a Promise satisfies the hook's type
   };
@@ -23,17 +24,14 @@ export default function PostPage() {
     deleting,
     error: deleteError,
     deletePost,
-  } = useDeletePost("http://localhost:3000/posts", postId, refetch);
-
-  const post = mockPosts.find((p) => p.id === postId);
-
-  if (!post)
-    return (
-      <Container>
-        <Header />
-        <Heading2>404 Post not found</Heading2>
-      </Container>
-    );
+  } = useDeletePost("http://localhost:5000/api/posts", postId, refetch);
+  const { post, loading, error, fetchPost } = useFetchPost(
+    "http://localhost:5000/api/posts",
+    postId
+  );
+  useEffect(() => {
+    void fetchPost();
+  }, [fetchPost]);
 
   function handleDeleteConfirm() {
     setShowDeleteModal(true);
@@ -55,6 +53,35 @@ export default function PostPage() {
     }
   }
 
+  const handleEdit = () => {
+    navigate(`/edit-post/${postId}`);
+  }
+
+  if (loading) {
+    return (
+      <Container>
+        <Header />
+        <Heading2>Loading Post...</Heading2>
+      </Container>
+    );
+  }
+  if (error) {
+    return (
+      <Container>
+        <Header />
+        <Heading2>Error Loading Post</Heading2>
+        <p className="text-red-500">Error: {error}</p>
+      </Container>
+    );
+  }
+
+  if (!post)
+    return (
+      <Container>
+        <Header />
+        <Heading2>404 Post not found</Heading2>
+      </Container>
+    );
   return (
     <Container>
       <Header />
@@ -96,7 +123,7 @@ export default function PostPage() {
 
       {/* 🔹 Action Buttons */}
       <div className="flex justify-end gap-4 mt-8 pt-4 border-t-2 border-dashed border-gray-300">
-        <Button>Edit</Button>
+        <Button onClick={handleEdit}>Edit</Button>
         <Button color="marker-btn-red" onClick={handleDeleteConfirm}>
           {deleting ? "Deleting..." : "Delete"}
         </Button>

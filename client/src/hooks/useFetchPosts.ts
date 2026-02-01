@@ -5,7 +5,7 @@ type FetchPostsResult = {
     posts: Post[] | null;
     loading: boolean;
     error: string | null;
-    refetch: () => Promise<void>;
+    fetchPosts: () => Promise<void>;
 }
 
 export function useFetchPosts(apiUrl: string): FetchPostsResult {
@@ -41,5 +41,5 @@ export function useFetchPosts(apiUrl: string): FetchPostsResult {
         void fetchPosts();
     }, [fetchPosts]);
 
-    return { posts, loading, error, refetch: fetchPosts };
+    return { posts, loading, error, fetchPosts };
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 
-export default function useDeletePost(apiUrl: string, postId: number, refetch: () => Promise<void>) {
+export default function useDeletePost(apiUrl: string, postId: number | string, refetch: () => Promise<void>) {
     const [deleting, setDeleting] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 

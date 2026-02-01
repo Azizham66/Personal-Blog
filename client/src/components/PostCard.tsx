@@ -2,7 +2,7 @@ import Anchor from "./Anchor";
 import type { BaseProps } from "../types/BaseProps";
 
 type CardProps = BaseProps & {
-  id: number;
+  id: string | number;
   title: string;
   tags: string[];
   publishDate: string;

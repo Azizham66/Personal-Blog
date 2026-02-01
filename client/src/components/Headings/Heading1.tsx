@@ -1,4 +1,4 @@
-import type { BaseProps } from "../types/BaseProps";
+import type { BaseProps } from "../../types/BaseProps";
 import './styles/Heading1.css';
 
 

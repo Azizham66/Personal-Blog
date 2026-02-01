@@ -5,10 +5,10 @@ type FetchPostResult = {
     post: Post | null;
     loading: boolean;
     error: string | null;
-    refetch: () => Promise<void>;
+    fetchPost: () => Promise<void>;
 }
 
-export function useFetchPost(apiUrl: string, postId: number): FetchPostResult {
+export function useFetchPost(apiUrl: string, postId: number | string): FetchPostResult {
     const [post, setPost] = useState<Post | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -40,6 +40,6 @@ export function useFetchPost(apiUrl: string, postId: number): FetchPostResult {
         void fetchPost();
     }, [fetchPost]);
 
-    return { post, loading, error, refetch: fetchPost };
+    return { post, loading, error, fetchPost };
     
 }
