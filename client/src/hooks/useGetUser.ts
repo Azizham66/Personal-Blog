@@ -32,7 +32,6 @@ export const useGetUser = (apiUrl: string) => {
 
         if (res.status === 401) {
           setError("Unauthorized");
-          console.log('eeeee')
           setUser(null);
           return;
         }
@@ -40,11 +39,9 @@ export const useGetUser = (apiUrl: string) => {
         if (!res.ok) throw new Error("Failed to fetch user");
 
         const data: User = await res.json();
-        console.log(data)
         setUser(data);
       } catch {
         setError("Network error");
-        console.log('eeeeee')
         setUser(null);
       } finally {
         setLoading(false);
@@ -52,7 +49,6 @@ export const useGetUser = (apiUrl: string) => {
     };
 
     fetchUser();
-    console.log('eeee')
   }, [apiUrl, token]);
 
   return {
