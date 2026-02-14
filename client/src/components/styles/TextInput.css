@@ -1,0 +1,31 @@
+.text-input {
+  border: 3px solid var(--marker-black);
+  background-color: var(--paper-white);
+  box-shadow: 4px 4px 0 0 var(--marker-black);
+  transform: translate(0);
+  width: 100%;
+  transition: all 0.1s;
+  font-weight: bold;
+}
+
+.text-input:hover {
+    box-shadow: 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+.text-input:focus {
+    box-shadow: 2px 2px 0 0 var(--marker-blue);
+    border-color: var(--marker-blue);
+    transform: translate(2px, 2px);
+    outline: none;
+}
+
+.error {
+    box-shadow: 4px 4px 0 0 var(--marker-red);
+    border-color: var(--marker-red);
+}
+
+.error:hover, .error:focus {
+    box-shadow: 2px 2px 0 0 var(--marker-red);
+    border-color: var(--marker-red);
+}

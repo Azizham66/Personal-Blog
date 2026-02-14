@@ -6,8 +6,10 @@ import Posts from "./pages/Posts";
 import PostPage from "./pages/PostPage";
 import PostForm from "./pages/PostForm";
 import Profile from "./pages/Profile";
+import Login from "./pages/Login";
 
 function App() {
+
   return (
     <div>
       <Routes>
@@ -18,6 +20,7 @@ function App() {
         <Route path="/create-post" element={<PostForm />} />
         <Route path="/edit-post/:id" element={<PostForm />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
     </div>
   );

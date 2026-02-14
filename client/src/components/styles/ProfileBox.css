@@ -1,0 +1,16 @@
+.profile-box {
+    border: 3px solid var(--marker-black);
+    background-color: var(--paper-white);
+    padding: 1rem;
+    box-shadow: 4px 4px 0 0 var(--marker-black);;
+    width: 100%;
+    height: 100%;
+
+    & h2, & h3{
+        margin: 8px 10px;
+    }
+
+    & hr {
+        margin: 15px 10px;
+    }
+}

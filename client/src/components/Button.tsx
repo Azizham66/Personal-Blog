@@ -3,7 +3,7 @@ import './styles/Button.css';
 type ButtonProps = BaseProps & {
     onClick?: () => void;
     type?: "button" | "submit" | "reset";
-    color?: "marker-btn-default" | "marker-btn-violet" | "marker-btn-red";
+    color?: "marker-btn-default" | "marker-btn-violet" | "marker-btn-red" | "marker-btn-blue";
 }
 
 export default function Button({
@@ -15,7 +15,7 @@ export default function Button({
 } : ButtonProps) {
     return (
         <button
-            className = {className + ` ${color} px-4 py-2 rounded-lg`}
+            className = {className + ` ${color} px-4 py-2 rounded-lg marker-btn`}
             type = {type}
             onClick = {onClick}
         >

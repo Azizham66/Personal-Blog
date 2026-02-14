@@ -2,10 +2,11 @@ import Heading1 from "../components/Headings/Heading1";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 
 export default function Header() {
   const location = useLocation();
-
+  const { loggedIn } =  useAuth();
   const pathToPage = (path: string) => {
     switch (path) {
       case "/":
@@ -50,6 +51,7 @@ export default function Header() {
                     ? "marker-btn-violet"
                     : "marker-btn-default"
                 }
+                className = { (!loggedIn && (page.page === "profile" || page.page === "create-post")) ? "hidden" : "" }
               >
                 {page.label}
               </Button>

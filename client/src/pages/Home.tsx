@@ -33,7 +33,7 @@ export default function Home() {
         safety is essential and dynamic languages suck. Think of it as a messy,
         caffeine-fueled journal powered by Node.js and TypeScript, where I argue
         with my own functions, debate if Redux is overkill, and suffering at 2
-        AM trying to understand what the hell is regex.
+        AM trying to figure out regex.
       </p>
       <p className="mb-6 font-mono text-gray-700">
         It's not polished, it's not always elegant, but it's real: notes on what
