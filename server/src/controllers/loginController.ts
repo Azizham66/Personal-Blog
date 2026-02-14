@@ -3,8 +3,6 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import type { Request, Response } from 'express'
 
-dotenv.config()
-
 const JWT_SECRET = process.env.JWT_SECRET
 const AUTHOR_EMAIL = process.env.AUTHOR_EMAIL
 const AUTHOR_USERNAME =  process.env.AUTHOR_USERNAME

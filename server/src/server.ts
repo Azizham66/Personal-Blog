@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 import express from 'express';
 import type { Request, Response } from 'express';
 import cors from 'cors';
@@ -5,9 +7,6 @@ import postRoutes from './routes/posts.ts';
 import loginRoutes from './routes/login.ts';
 
 import dbConnect from './config/dbConnect.ts';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 dbConnect();
 
