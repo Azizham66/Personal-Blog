@@ -1,5 +1,5 @@
-import { getPosts, getPostById, savePost, updatePost, deletePost } from '../controllers/postController.ts';
-import { authMiddleware } from '../middleware/authorization.ts'
+import { getPosts, getPostById, savePost, updatePost, deletePost } from '../controllers/postController.js';
+import { authMiddleware } from '../middleware/authorization.js'
 import { Router } from 'express';
 
 const router = Router();
