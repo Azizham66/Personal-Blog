@@ -2,12 +2,13 @@ import Container from "../components/Container";
 import Header from "../layouts/Header";
 import Heading2 from "../components/Headings/Heading2";
 import PostCard from "../components/PostCard";
+import { API_URL } from "../config/api";
 import { useFetchPosts } from "../hooks/useFetchPosts"; 
 import { useEffect } from "react";
 
 
 export default function Posts() {
-  const { posts, loading, error, fetchPosts } = useFetchPosts('http://localhost:5000/api/posts');
+  const { posts, loading, error, fetchPosts } = useFetchPosts(`${API_URL}/api/posts`);
   useEffect(() => {
     void fetchPosts();
   }, [fetchPosts]);

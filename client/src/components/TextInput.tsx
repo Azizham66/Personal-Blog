@@ -7,6 +7,7 @@ export type TextInputProps = BaseProps & {
     name: string;
     type: string;
     value: string;
+    error?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export default function TextInput({
@@ -16,6 +17,7 @@ export default function TextInput({
     name,
     type= "text",
     value,
+    error,
     onChange,
 }: TextInputProps) {
     return (
@@ -27,9 +29,12 @@ export default function TextInput({
                 name={name} 
                 id={label} 
                 placeholder={placeholder} 
-                className={className + " text-input px-4 py-2 rounded-lg"} 
+                className={className + " text-input px-4 py-2 rounded-lg shadow-[3px_3px_0_0_#111827]"} 
                 value={value}
             />
+            {error && (
+                <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
         </div>
     )
 }

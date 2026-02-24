@@ -30,7 +30,7 @@ const ProfileBox = ({
     return (
         <>
             {isLoggedIn && <div>
-                <div className="profile-box rounded-lg font-mono">
+                <div className="profile-box rounded-lg font-mono shadow-[3px_3px_0_0_#111827]">
                     <h2> Author Name: <span className="font-semibold text-red-500">{authorName}</span></h2>
                     <h3> Author Username: <span className="font-semibold text-red-500">{authorUsername}</span></h3>
                     <h3> Author Email: <span className="font-semibold text-red-500">{authorEmail}</span></h3>

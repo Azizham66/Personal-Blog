@@ -7,6 +7,7 @@ import PostPage from "./pages/PostPage";
 import PostForm from "./pages/PostForm";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
+import Error from "./pages/Error";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/edit-post/:id" element={<PostForm />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/error" element={<Error error="Unknown error occurred" />} />
       </Routes>
     </div>
   );

@@ -10,6 +10,7 @@ import Tag from "../components/Tag";
 import Button from "../components/Button";
 import "./styles/PostPage.css";
 import { useFetchPost } from "../hooks/useFetchPost";
+import { API_URL } from "../config/api";
 
 export default function PostPage() {
   const { id } = useParams<{ id: string }>();
@@ -22,11 +23,10 @@ export default function PostPage() {
   const navigate = useNavigate();
   const {
     deleting,
-    error: deleteError,
     deletePost,
-  } = useDeletePost("http://localhost:5000/api/posts", postId, refetch);
+  } = useDeletePost(`${API_URL}/api/posts`, postId, refetch);
   const { post, loading, error, fetchPost } = useFetchPost(
-    "http://localhost:5000/api/posts",
+    `${API_URL}/api/posts`,
     postId
   );
   useEffect(() => {
@@ -45,11 +45,14 @@ export default function PostPage() {
     setShowDeleteModal(false);
     try {
       await deletePost();
-      console.log("post deleted");
+      // Post successfully deleted
       navigate("/posts");
     } catch (error) {
-      if (error instanceof Error) console.log(deleteError);
-      else console.log("unknown error occured");
+      if (error instanceof Error) {
+        navigate("/error", { state: { error: error.message } });
+      } else {
+        navigate("/error", { state: { error: "An unknown error occurred while deleting post" } });
+      }
     }
   }
 
@@ -66,13 +69,8 @@ export default function PostPage() {
     );
   }
   if (error) {
-    return (
-      <Container>
-        <Header />
-        <Heading2>Error Loading Post</Heading2>
-        <p className="text-red-500">Error: {error}</p>
-      </Container>
-    );
+    navigate("/error", { state: { error } });
+    return null;
   }
 
   if (!post)

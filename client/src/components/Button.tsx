@@ -15,7 +15,7 @@ export default function Button({
 } : ButtonProps) {
     return (
         <button
-            className = {className + ` ${color} px-4 py-2 rounded-lg marker-btn`}
+            className = {className + ` ${color} px-4 py-2 rounded-lg marker-btn shadow-[3px_3px_0_0_#111827]`}
             type = {type}
             onClick = {onClick}
         >

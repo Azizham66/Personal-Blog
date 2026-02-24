@@ -6,7 +6,7 @@ export default function Container({
     children
 }: BaseProps) {
     return (
-    <div className={className + " blog-container p-6 sm:p-10"}>
+    <div className={className + " blog-container p-12 sm:p-10 "}>
         {children}
     </div>
     )

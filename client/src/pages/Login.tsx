@@ -15,7 +15,11 @@ export default function Login() {
     
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        await login(username, password);
+        try {
+            await login(username, password);
+        } catch {
+            navigate("/error", { state: { error: "Login failed. Please try again." } });
+        }
     }
 
     useEffect(() => {

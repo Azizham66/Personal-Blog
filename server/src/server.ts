@@ -5,6 +5,7 @@ import type { Request, Response } from 'express';
 import cors from 'cors';
 import postRoutes from './routes/posts.ts';
 import loginRoutes from './routes/login.ts';
+import uploadRoutes from './routes/upload.ts';
 
 import dbConnect from './config/dbConnect.ts';
 
@@ -24,10 +25,12 @@ app.use(
 );
 
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 app.use('/api', postRoutes);
-app.use('/auth', loginRoutes)
+app.use('/auth', loginRoutes);
+app.use('/api', uploadRoutes);
 
-const PORT = process.env.PORT ? Number(process.env.PORT) : 3000;
+const PORT = process.env.PORT ? Number(process.env.PORT) : 5000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

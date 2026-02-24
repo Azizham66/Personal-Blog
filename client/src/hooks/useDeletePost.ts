@@ -1,15 +1,24 @@
 import { useState } from 'react';
-
+import { useAuth } from '../auth/AuthContext';
 
 export default function useDeletePost(apiUrl: string, postId: number | string, refetch: () => Promise<void>) {
     const [deleting, setDeleting] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const { token } = useAuth();
 
     const deletePost = async () => {
         setDeleting(true);
         setError(null);
         try {
-            const res = await fetch(`${apiUrl}/${postId}`, {method: 'DELETE'});
+            const headers: Record<string, string> = {};
+            if (token) {
+                headers['Authorization'] = `Bearer ${token}`;
+            }
+            
+            const res = await fetch(`${apiUrl}/${postId}`, {
+                method: 'DELETE',
+                headers
+            });
             if (!res.ok) {
                 throw new Error(`Error: ${res.status} ${res.statusText}`);
             }
@@ -19,7 +28,7 @@ export default function useDeletePost(apiUrl: string, postId: number | string, r
                 setError(err.message);
             }
             else {
-                console.error("An unknown error occurred while deleting post");
+                setError("An unknown error occurred while deleting post");
             }
         } finally {
             setDeleting(false);

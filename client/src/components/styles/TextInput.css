@@ -20,6 +20,10 @@
     outline: none;
 }
 
+.text-input::placeholder {
+  color: #9ca3af;
+}
+
 .error {
     box-shadow: 4px 4px 0 0 var(--marker-red);
     border-color: var(--marker-red);

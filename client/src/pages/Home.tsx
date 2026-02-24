@@ -8,9 +8,10 @@ import Heading3 from "../components/Headings/Heading3";
 import { getLatestPosts } from "../utils/getLatestPosts";
 import PostCard from "../components/PostCard";
 import { useFetchPosts } from "../hooks/useFetchPosts";
+import { API_URL } from "../config/api";
 
 export default function Home() {
-  const { posts, loading, error, fetchPosts } = useFetchPosts('http://localhost:5000/api/posts');
+  const { posts, loading, error, fetchPosts } = useFetchPosts(`${API_URL}/api/posts`);
   useEffect(() => {
     void fetchPosts();
   }, [fetchPosts]);

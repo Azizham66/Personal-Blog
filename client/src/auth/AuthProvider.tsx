@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import type { ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
 import type { AuthContextType } from "./AuthContext";
+import { API_URL } from "../config/api";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setLoginError(null);
 
     try {
-      const res = await fetch("http://localhost:5000/auth/login", {
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user, password }),
@@ -50,7 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       localStorage.setItem("token", data.token);
     } catch (err: unknown) {
       if (err instanceof Error) setLoginError(err.message);
-      else console.error("Unknown login error");
+      else setLoginError("Unknown login error");
     } finally {
       setLoggingIn(false);
     }

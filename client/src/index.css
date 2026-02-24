@@ -38,7 +38,275 @@ body {
   min-height: 100vh;
 }
 
+/* Global scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--marker-blue);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--marker-blue);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) var(--marker-blue);
+}
+
 .marker-text-black {
   color: var(--marker-black);
 }
 
+/* 1. Reset the "flat" look caused by Tailwind */
+.ck-content {
+  font-family: 'monospace'; /* or your preferred font */
+  line-height: 1.6;
+  border-radius: 0.75rem; /* rounded-xl */
+}
+
+.ck-content h2 {
+  font-size: 1.875rem !important; /* text-3xl */
+  font-weight: 700 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+  display: block !important;
+}
+
+.ck-content h3 {
+  font-size: 1.5rem !important; /* text-2xl */
+  font-weight: 600 !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.ck-content p {
+  margin-bottom: 1rem !important;
+}
+
+/* 2. Make the editor actually fill the container */
+.ck-editor__editable_inline {
+    min-height: 400px;
+    padding: 2rem !important; /* Gives that "document" feel */
+}
+
+/* Table Styling */
+.ck-content table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin: 1rem 0 !important;
+  font-family: 'monospace' !important;
+  font-size: 0.875rem !important;
+  border: 2px solid var(--marker-black) !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+}
+
+/* General table styling for all content tables */
+.content {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Custom scrollbar styling */
+.content::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #f9fafb;
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+.content::-webkit-scrollbar-corner {
+  background: #f9fafb;
+}
+
+.content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+  font-family: monospace;
+  font-size: 0.875rem;
+  border: 2px solid var(--marker-black);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  background-color: var(--paper-white);
+  max-width: 100%;
+  table-layout: auto;
+  min-width: 600px;
+}
+
+/* Responsive table adjustments */
+@media (max-width: 768px) {
+  .content table {
+    font-size: 0.75rem;
+  }
+  
+  .content th {
+    font-size: 0.8rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  .content td {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .content table {
+    font-size: 0.65rem;
+  }
+  
+  .content th {
+    font-size: 0.7rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+  
+  .content td {
+    font-size: 0.65rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+}
+
+.content th {
+  background-color: #d1d5db !important;
+  color: var(--marker-black) !important;
+  font-weight: 600 !important;
+  font-family: monospace !important;
+  font-size: 1rem !important;
+  text-align: left !important;
+  padding: 0.75rem 1rem !important;
+  border-bottom: 2px solid var(--marker-black) !important;
+  border-right: 2px solid var(--marker-black) !important;
+}
+
+.content th:last-child {
+  border-right: 2px solid var(--marker-black) !important;
+}
+
+.content td {
+  padding: 0.75rem 1rem !important;
+  border-bottom: 2px solid var(--marker-black) !important;
+  border-right: 2px solid var(--marker-black) !important;
+  background-color: #e5e7eb !important;
+  font-family: monospace !important;
+  font-size: 0.9rem !important;
+  vertical-align: top !important;
+}
+
+.content td:last-child {
+  border-right: 2px solid var(--marker-black) !important;
+}
+
+.content tr:last-child td {
+  border-bottom: 2px solid var(--marker-black) !important;
+}
+
+.content tr:hover {
+  background-color: transparent !important;
+}
+
+.content tr:hover td {
+  background-color: #e5e7eb !important;
+}
+
+/* Table Toolbar Styling */
+.ck .ck-toolbar {
+  background-color: var(--paper-white) !important;
+  border: 2px solid var(--marker-black) !important;
+  border-radius: 0.25rem 0.25rem 0 0 !important;
+  padding: 0.75rem !important;
+  box-shadow: 3px 3px 0 0 var(--marker-black) !important;
+}
+
+.ck .ck-toolbar__separator {
+  background-color: #d1d5db !important;
+  width: 2px !important;
+  margin: 0 0.5rem !important;
+}
+
+.ck .ck-button {
+  border-radius: 0.25rem !important;
+  margin: 0 0.25rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.ck .ck-button:hover {
+  background-color: #f3f4f6 !important;
+}
+
+.ck .ck-button_on {
+  background-color: var(--marker-blue) !important;
+  color: white !important;
+}
+
+.ck .ck-editor__main {
+  border: 2px solid var(--marker-black) !important;
+  border-top: none !important;
+  border-radius: 0 0 0.25rem 0.25rem !important;
+  box-shadow: 3px 3px 0 0 var(--marker-black) !important;
+}
+
+.ck .ck-button__save {
+  background-color: var(--marker-blue) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  border-radius: 0.25rem !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.ck .ck-button__save:hover {
+  background-color: #2563eb !important;
+}
+
+/* Table Cell Properties Dialog */
+.ck .ck-sticky-panel {
+  background-color: var(--paper-white) !important;
+  border: 2px solid var(--marker-black) !important;
+  border-radius: 0.5rem !important;
+}
+
+.ck .ck-label {
+  color: var(--marker-black) !important;
+  font-weight: 600 !important;
+}
+
+.ck .ck-input__text {
+  background-color: var(--paper-white) !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 0.25rem !important;
+  padding: 0.5rem !important;
+  font-family: 'monospace' !important;
+}
+
+.ck .ck-input__text:focus {
+  border-color: var(--marker-blue) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+}

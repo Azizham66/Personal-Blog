@@ -15,7 +15,7 @@ export const loginController = async (req: Request, res: Response) => {
 
     if (!JWT_SECRET || !AUTHOR_EMAIL || !AUTHOR_USERNAME || !AUTHOR_PASSWORD_HASH) {
         res.status(500).json({ message: "Internal server error" })
-        throw new Error("Missing environment variables")
+        return;
     }
 
     if (!user || !password) 

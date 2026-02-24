@@ -34,7 +34,7 @@ export function useUpdatePost(
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        console.error("An unknown error occurred while updating post");
+        setError("An unknown error occurred while updating post");
       }
     }
   };
