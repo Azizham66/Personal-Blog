@@ -45,6 +45,13 @@ lerna-debug.log*
 .env.*.local
 
 # -------------------------
+# Security - Password hash generator
+# -------------------------
+# NEVER commit actual password hash generation scripts
+server/src/scripts/hash-password.ts
+server/src/scripts/hash-password.js
+
+# -------------------------
 # Temporary / misc
 # -------------------------
 client/src/mockposts.ts
