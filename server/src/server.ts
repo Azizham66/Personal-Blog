@@ -3,11 +3,11 @@ import 'dotenv/config';
 import express from 'express';
 import type { Request, Response } from 'express';
 import cors from 'cors';
-import postRoutes from './routes/posts.ts';
-import loginRoutes from './routes/login.ts';
-import uploadRoutes from './routes/upload.ts';
+import postRoutes from './routes/posts.js';
+import loginRoutes from './routes/login.js';
+import uploadRoutes from './routes/upload.js';
 
-import dbConnect from './config/dbConnect.ts';
+import dbConnect from './config/dbConnect.js';
 
 dbConnect();
 
@@ -18,7 +18,7 @@ dbConnect();
 const app = express();
 
 // enable CORS for the client dev server (change or add origins as needed)
-app.use(
+app.use(  
     cors({
         origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
     })

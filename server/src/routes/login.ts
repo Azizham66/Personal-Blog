@@ -1,7 +1,7 @@
-import { loginController } from "../controllers/loginController.ts";
+import { loginController } from "../controllers/loginController.js";
 import { Router } from "express";
-import { authMiddleware } from "../middleware/authorization.ts";
-import { userController } from "../controllers/userController.ts";
+import { authMiddleware } from "../middleware/authorization.js";
+import { userController } from "../controllers/userController.js";
 
 const router = Router()
 

@@ -1,6 +1,6 @@
-import Post from "../models/Post.model.ts";
+import Post from "../models/Post.model.js";
 import type { Request, Response } from "express";
-import type { IPost } from "../models/Post.model.ts";
+import type { IPost } from "../models/Post.model.js";
 import { Types } from "mongoose";
 
 const getPosts = async (req: Request, res: Response) => {
