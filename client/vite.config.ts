@@ -14,6 +14,7 @@ export default defineConfig({
     tailwindcss(),
     tsconfigPaths(),
   ],
+  base: "/Personal-Blog/",
   server: {
     host: true, // allows access from LAN/ngrok 
     strictPort: true,

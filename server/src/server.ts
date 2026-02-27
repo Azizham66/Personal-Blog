@@ -18,10 +18,13 @@ dbConnect();
 const app = express();
 
 // enable CORS for the client dev server (change or add origins as needed)
-app.use(  
-    cors({
-        origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
-    })
+app.use(
+  cors({
+    origin: [
+      process.env.CLIENT_ORIGIN || "https://azizham66.github.io",
+      process.env.DEV_ORIGIN || "http://localhost:5173"
+    ]
+  })
 );
 
 app.use(express.json());
