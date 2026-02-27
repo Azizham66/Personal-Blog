@@ -33,7 +33,7 @@ export const uploadController = (req: UploadRequest, res: Response) => {
         }
 
         // Generate file URL
-        const baseUrl = process.env.SERVER_URL || 'http://localhost:5000';
+        const baseUrl = process.env.SERVER_URL || 'https://blogapi.techazizo.site';
         const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
 
         // Return success response
