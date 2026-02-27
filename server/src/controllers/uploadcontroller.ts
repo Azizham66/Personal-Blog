@@ -1,19 +1,21 @@
+import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
-import path from 'path';
 import type { Request, Response } from 'express';
 
-const storage = multer.diskStorage({
-    destination: "uploads/",
-    filename: (_, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
+// Configure Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
+// Use memory storage for multer
+const storage = multer.memoryStorage();
 export const upload = multer({ storage });
 
 type UploadRequest = Request & { file?: Express.Multer.File };
 
-export const uploadController = (req: UploadRequest, res: Response) => {
+export const uploadController = async (req: UploadRequest, res: Response) => {
     try {
         // Check if file exists
         if (!req.file) {
@@ -32,15 +34,29 @@ export const uploadController = (req: UploadRequest, res: Response) => {
             });
         }
 
-        // Generate file URL
-        const baseUrl = process.env.SERVER_URL || 'https://blogapi.techazizo.site';
-        const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
+        // Upload to Cloudinary
+        const result = await new Promise<any>((resolve, reject) => {
+            if (!req.file) {
+                reject(new Error('No file provided'));
+                return;
+            }
+            cloudinary.uploader.upload_stream(
+                {
+                    resource_type: 'auto',
+                    folder: 'blog-uploads'
+                },
+                (error, result) => {
+                    if (error) reject(error);
+                    else resolve(result);
+                }
+            ).end(req.file.buffer);
+        });
 
         // Return success response
         res.status(200).json({ 
             message: 'File uploaded successfully',
-            url: fileUrl,
-            filename: req.file.filename,
+            url: result.secure_url,
+            filename: result.public_id,
             originalName: req.file.originalname,
             size: req.file.size
         });
