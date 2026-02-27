@@ -1,3 +1,4 @@
+import { useAuth } from "../auth/AuthContext";
 import type { Post } from "../types/Post";
 import { useState } from "react";
 
@@ -15,14 +16,19 @@ export function useUpdatePost(
   const [updatedPost, setUpdatedPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const { token } = useAuth();
 
   const updatePost = async (updatedData: Partial<Post>) => {
     setLoading(true);
     setError(null);
     try {
+      const headers : Record<string, string> = { "Content-Type": "application/json" }; 
+      if (token) {
+        headers["Authorization"] = `Bearer ${token}`
+      }
       const res = await fetch(`${apiUrl}/${postId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify(updatedData),
       });
       if (!res.ok) {
