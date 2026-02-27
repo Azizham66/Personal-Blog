@@ -55,16 +55,15 @@ export const uploadController = async (req: UploadRequest, res: Response) => {
         // Return success response
         res.status(200).json({ 
             message: 'File uploaded successfully',
-            url: result.secure_url,
-            filename: result.public_id,
-            originalName: req.file.originalname,
-            size: req.file.size
+            url: result.secure_url
         });
 
     } catch (error: any) {
+        console.error('Upload error details:', error);
         res.status(500).json({ 
             error: 'Upload failed',
-            message: 'An error occurred while uploading the file'
+            message: 'An error occurred while uploading the file',
+            details: error.message
         });
     }
 };
