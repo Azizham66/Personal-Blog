@@ -5,10 +5,11 @@ import Heading2 from "../components/Headings/Heading2";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useDeletePost from "../hooks/useDeletePost";
-import Anchor from "../components/Anchor";
+import { Link } from "react-router-dom";
 import Tag from "../components/Tag";
 import Button from "../components/Button";
 import "./styles/PostPage.css";
+import "../components/styles/Anchor.css";
 import { useFetchPost } from "../hooks/useFetchPost";
 import { API_URL } from "../config/api";
 import { useAuth } from "../auth/AuthContext";
@@ -86,9 +87,9 @@ export default function PostPage() {
     <Container>
       <Header />
       <div className="mb-8">
-        <Anchor href="/posts" className="text-sm text-red-500">
+        <Link to="/posts" className="text-sm text-red-500 primary-link">
           &larr; Back to all posts
-        </Anchor>
+        </Link>
       </div>
 
       <Heading2>{post.title}</Heading2>

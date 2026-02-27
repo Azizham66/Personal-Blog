@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import type { BaseProps } from "../types/BaseProps";
+import "./styles/Anchor.css";
 
 type CardProps = BaseProps & {
   id: string | number;
