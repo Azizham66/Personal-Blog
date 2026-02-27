@@ -8,7 +8,7 @@
 }
 
 #post-content-display p {
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem 1rem;
     line-height: 1.6;
     font-size: 1rem;
     font-weight: 500;
@@ -43,7 +43,8 @@
 
 #post-content-display ul,
 #post-content-display ol {
-    margin: 0 0 1rem 1.5rem;
+    
+    margin: 0 0 1rem 4rem;
     padding: 0;
 }
 
@@ -52,10 +53,82 @@
     line-height: 1.6;
 }
 
+#post-content-display ol {
+    list-style-type: decimal;
+}
+
+#post-content-display ul {
+    list-style-type: disc;
+}
+
+#post-content-display blockquote {
+    border-left: 4px solid #6b7280;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    background-color: #f9fafb;
+    padding: 0.5rem;
+    border-radius: 2px 0 0 2px;
+}
+
+#post-content-display blockquote p {
+    margin: 0;
+}
+
 #post-content-display code:not(pre code) {
     background-color: #f3f4f6; 
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-family: 'ui-monospace', monospace;
     font-size: 0.95rem;
+}
+
+#post-content-display figcaption {
+    text-align: center;
+    font-style: italic;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+#post-content-display figure {
+    width: 100% !important;
+    height: auto;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#post-content-display figure img {
+    width: 70% !important;
+    height: auto;
+    border-radius: 4px;
+    margin: auto;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#post-content-display h2 {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+#post-content-display h3 {
+    font-size: 1.25rem;
+    margin-left: 1rem;
+}
+
+#post-content-display h4 {
+    font-size: 1.15rem;
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+.text-big {
+    font-size: 1.15rem;
+    margin-left: 1rem;
+}
+
+#post-content-display hr {
+    margin: 1rem 0;
+    border: none;
+    border-top: 2px solid #e5e7eb;
 }
