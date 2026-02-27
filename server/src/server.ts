@@ -23,7 +23,8 @@ app.use(
     origin: [
       process.env.CLIENT_ORIGIN || "https://azizham66.github.io",
       process.env.DEV_ORIGIN || "http://localhost:5173",
-      "https://blog.techazizo.site"
+      "https://blog.techazizo.site",
+      "http://blog.techazizo.site"
     ]
   })
 );
