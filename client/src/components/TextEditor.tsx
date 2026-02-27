@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { API_URL } from "../config/api";
 
@@ -74,11 +74,17 @@ function CustomUploadAdapterPlugin(editor: Editor) {
 
 type TextEditorProps = {
   onChangeContent: (content: string) => void;
+  fetchedContent: string | undefined;
 };
 
-export default function TextEditor({ onChangeContent }: TextEditorProps) {
+export default function TextEditor({ onChangeContent, fetchedContent }: TextEditorProps) {
   const [content, setContent] = useState("");
 
+  useEffect(() => {
+    if (fetchedContent !== undefined) {
+      setContent(fetchedContent);
+    }
+  }, [fetchedContent]);
   return (
     <div className="text-editor-container">
       <div className="ck-content">

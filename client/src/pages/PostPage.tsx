@@ -11,6 +11,7 @@ import Button from "../components/Button";
 import "./styles/PostPage.css";
 import { useFetchPost } from "../hooks/useFetchPost";
 import { API_URL } from "../config/api";
+import { useAuth } from "../auth/AuthContext";
 
 export default function PostPage() {
   const { id } = useParams<{ id: string }>();
@@ -20,6 +21,7 @@ export default function PostPage() {
     // implement actual refetch logic as needed; returning a Promise satisfies the hook's type
   };
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const { loggedIn } = useAuth();
   const navigate = useNavigate();
   const {
     deleting,
@@ -120,12 +122,12 @@ export default function PostPage() {
       </div>
 
       {/* 🔹 Action Buttons */}
-      <div className="flex justify-end gap-4 mt-8 pt-4 border-t-2 border-dashed border-gray-300">
+      {loggedIn &&<div className="flex justify-end gap-4 mt-8 pt-4 border-t-2 border-dashed border-gray-300">
         <Button onClick={handleEdit}>Edit</Button>
         <Button color="marker-btn-red" onClick={handleDeleteConfirm}>
           {deleting ? "Deleting..." : "Delete"}
         </Button>
-      </div>
+      </div>}
 
       {/* 🔹 Delete Confirmation Modal */}
       {showDeleteModal && (

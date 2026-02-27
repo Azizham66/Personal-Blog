@@ -3,28 +3,40 @@ import Heading1 from "../components/Headings/Heading1";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import Header from "../layouts/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../auth/AuthContext";
 import TextEditor from "../components/TextEditor";
 import { API_URL } from "../config/api";
-import { useAddPost } from "../hooks/useAddPost.ts";
+import { useAddPost } from "../hooks/useAddPost";
+import { useUpdatePost } from "../hooks/useUpdatePost";
+import { useFetchPost } from "../hooks/useFetchPost";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function PostForm() {
-
-    const refetch = async (): Promise<void> => {
-        // implement actual refetch logic as needed; returning a Promise satisfies the hook's type
-      };
-
+    
     const navigate = useNavigate();
 
     const { loggedIn } = useAuth();
+
+    
+    const { id } = useParams();
+    const postId = id ? id : "";
+    const editing = Boolean(id);
+    
+    const refetch = async (): Promise<void> => {
+        // implement actual refetch logic as needed; returning a Promise satisfies the hook's type
+    };
+
+
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
     const [author] = useState<string>("Abdulaziz Hamzah");
     const [titleError, setTitleError] = useState<string>("");
     const [contentError, setContentError] = useState<string>("");
-    const { adding, error, addPost } = useAddPost(`${API_URL}/api/posts`, refetch);
+    const { adding, error: uploadError, addPost } = useAddPost(`${API_URL}/api/posts`, refetch);
+    const { updatePost } = useUpdatePost(`${API_URL}/api/posts`, postId);
+    const { post, fetchPost } = useFetchPost(`${API_URL}/api/posts`, postId);
     const [tagsString, setTagsString] = useState<string>("");
     const [tags, setTags] = useState<string[]>([]);
     const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +45,20 @@ export default function PostForm() {
             setTitleError("");
         }
     }
+    
+    useEffect(() => {
+        if (postId) {
+            fetchPost();
+        }
+    }, [postId, fetchPost]);
+    
+    useEffect(() => {
+        if (post) {
+            setTitle(post.title);
+            setContent(post.content);
+            setTags(post.tags);
+        }
+    }, [post]);
 
     const handleChangeTags = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTagsString(e.target.value);
@@ -60,11 +86,15 @@ export default function PostForm() {
             return;
         }
         
-        await addPost({ title, content, tags, author });
-        if (error) {
-            navigate("/error", { state: { error } });
+        if (editing) {
+            await updatePost({ title, content, tags, author });
+        } else {
+            await addPost({ title, content, tags, author });
+        }
+        if (uploadError) {
+            navigate("/error", { state: { error: uploadError } });
         } 
-        if (!adding && !error) {
+        if (!adding && !uploadError) {
             navigate("/posts")
         }
     }
@@ -75,6 +105,12 @@ export default function PostForm() {
             setContentError("");
         }
     }
+    
+    if (!loggedIn) {
+        navigate("/login");
+        return null;
+    }
+
     return (
         <Container>
             <Header />
@@ -102,7 +138,7 @@ export default function PostForm() {
                                 <label className="font-semibold text-xl font-mono block mt-4 mb-1 mx-1">
                                     Content*
                                 </label>
-                                <TextEditor onChangeContent={handleChangeContent}/>
+                                <TextEditor onChangeContent={handleChangeContent} fetchedContent={id ? post?.content : undefined}/>
                                 {contentError && (
                                     <p className="text-red-500 text-sm mt-1">{contentError}</p>
                                 )}
@@ -130,7 +166,7 @@ export default function PostForm() {
                                     color="marker-btn-blue"
                                     onClick={handleSubmit}
                                 >
-                                    Publish Post
+                                    {editing ? "Update Post" : "Publish Post"}
                                 </Button>
                             </div>
                         </form>
