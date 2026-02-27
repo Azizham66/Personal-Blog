@@ -106,10 +106,11 @@ export default function PostForm() {
         }
     }
     
-    if (!loggedIn) {
+    useEffect(() => {
+        if (!loggedIn) {
         navigate("/login");
-        return null;
-    }
+        }
+    }, [loggedIn, navigate]);
 
     return (
         <Container>
