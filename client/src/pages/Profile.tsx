@@ -4,13 +4,24 @@ import ProfileBox from "../components/ProfileBox";
 import { useGetUser } from "../hooks/useGetUser";
 import Header from "../layouts/Header";
 import "../index.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 
 export default function Profile() {
+
+  const navigate = useNavigate();
+  const { loggedIn } = useAuth();
+
   
   const { user, userLoading, userError } = useGetUser(
     "http://localhost:5000/auth/user",
   );
-
+  
+  if (!loggedIn) {
+    navigate("/login");
+    return null;
+  }
+  
   return (
     <Container>
       <Header />
