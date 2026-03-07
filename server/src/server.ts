@@ -1,11 +1,13 @@
 import 'dotenv/config';
 
 import express from 'express';
-import type { Request, Response } from 'express';
+
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
 import loginRoutes from './routes/login.js';
 import uploadRoutes from './routes/upload.js';
+import pingRouter from './routes/ping.js';
+import healthRouter from './routes/health.js';
 
 import dbConnect from './config/dbConnect.js';
 
@@ -34,6 +36,8 @@ app.use('/uploads', express.static('uploads'));
 app.use('/api', postRoutes);
 app.use('/auth', loginRoutes);
 app.use('/api', uploadRoutes);
+app.use('/api', pingRouter);
+app.use('/api', healthRouter);
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 5000;
 app.listen(PORT, () => {
