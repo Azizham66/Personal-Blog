@@ -216,6 +216,10 @@ The server uses the following environment variables:
 ### File Uploads
 - `POST /api/upload` - Upload image/file (auth required)
 
+### System Monitoring
+- `GET /api/ping` - Basic server connectivity check
+- `GET /api/health` - Detailed server status (uptime, memory usage, timestamp)
+
 ## Contributing
 
 1. Fork the repository
