@@ -7,13 +7,14 @@ import Header from "../layouts/Header";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import { API_URL } from "../config/api";
 
 export default function Profile() {
   const navigate = useNavigate();
   const { loggedIn } = useAuth();
 
   const { user, userLoading, userError } = useGetUser(
-    "http://localhost:5000/auth/user"
+    `${API_URL}/auth/user`
   );
 
   useEffect(() => {

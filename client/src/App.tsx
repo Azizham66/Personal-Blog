@@ -8,6 +8,7 @@ import PostForm from "./pages/PostForm";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
+import Footer from "./layouts/Footer";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/error" element={<Error error="Unknown error occurred" />} />
         </Routes>
+        <Footer />
       </HashRouter>
     </div>
   );
